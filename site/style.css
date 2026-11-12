@@ -596,7 +596,7 @@ ul, ol {
   font-family: var(--fonte-titulo);
   font-size: var(--fs-h3);
   text-decoration: none;
-  overflow-wrap: anywhere;
+  white-space: nowrap; /* o e-mail fica sempre em uma linha só */
   transition: color 0.25s ease;
 }
 
@@ -828,7 +828,8 @@ ul, ol {
   }
 
   .contato__lista {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, max-content);
+    gap: var(--sp-7);
   }
 
   .lightbox__caixa {
