@@ -1,0 +1,560 @@
+/* =========================================================================
+   print.css — layout do PDF (16:9, 1920 x 1080 por página)
+   Usa tokens.css, como o site. Só o que é exclusivo do PDF fica aqui.
+   ========================================================================= */
+
+/* Tamanho base maior: 1rem vira 32px neste canvas de 1920px.
+   Assim as escalas de tokens.css continuam valendo, só que em tamanho de slide. */
+html {
+  font-size: 32px;
+}
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  background: var(--bege);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+}
+
+/* ---------- página ---------- */
+.pagina {
+  box-sizing: border-box; /* o preenchimento fica dentro dos 1920 x 1080 */
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  padding: 96px 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* cada página começa numa folha nova (sem folha extra no fim) */
+.pagina:not(:first-child) {
+  break-before: page;
+  page-break-before: always;
+}
+
+.pagina--bege {
+  background: var(--bege);
+  color: var(--tinta);
+}
+
+.pagina--vinho {
+  background: var(--vinho);
+  color: var(--texto-claro);
+}
+
+/* cabeçalho discreto: nome no topo, número no rodapé — em areia */
+.pagina__topo,
+.pagina__numero {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.375rem;   /* 12px */
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--areia);
+}
+
+.pagina__topo {
+  top: 56px;
+}
+
+.pagina__numero {
+  bottom: 56px;
+}
+
+/* ---------- textos de apoio ---------- */
+.legenda {
+  font-size: 0.5rem;       /* 16px */
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.pagina--vinho .legenda {
+  color: var(--areia);
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.titulo em {
+  font-style: italic;
+}
+
+.pagina--bege .titulo em {
+  color: var(--vermelho);
+}
+
+.pagina--vinho .titulo em {
+  color: var(--areia);
+}
+
+.numero-grande {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 2.5rem;       /* 80px */
+  line-height: 1;
+  color: var(--vermelho);
+}
+
+/* ---------- 1. CAPA ---------- */
+.capa__nome {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  top: 64%;
+  transform: translateY(-50%);
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 7rem;         /* 224px */
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--areia) 22%, transparent);
+  white-space: nowrap;
+}
+
+.capa__frente {
+  position: absolute;
+  left: 120px;
+  top: 150px;
+}
+
+.capa__frente .titulo {
+  font-size: 4.5rem;       /* 144px */
+}
+
+.capa__frente .subtitulo {
+  margin-top: 40px;
+  font-size: 1.25rem;      /* 40px */
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  color: var(--areia);
+}
+
+.capa__link {
+  margin-top: 48px;
+  font-size: 0.75rem;      /* 24px */
+  color: var(--bege);
+}
+
+/* ---------- 2. ÍNDICE ---------- */
+.indice {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 120px;
+  row-gap: 0;
+}
+
+.indice__item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: baseline;
+  padding: 12px 0;
+  border-top: 1px solid var(--areia);
+}
+
+.indice__item .numero-grande {
+  font-size: 1.5rem;       /* 48px */
+}
+
+.indice__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;       /* 48px */
+  line-height: 1.1;
+}
+
+.indice__disciplina {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.4375rem;    /* 14px */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+
+/* ---------- 3. QUEM SOU ---------- */
+.quem__grade {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 120px;
+}
+
+.quem__texto {
+  font-size: 0.8125rem;    /* 26px */
+  line-height: 1.5;
+  display: grid;
+  gap: 28px;
+}
+
+.quem__formacao {
+  margin-top: 48px;
+  display: grid;
+  gap: 18px;
+  font-size: 0.5rem;       /* 16px */
+  line-height: 1.5;
+}
+
+.quem__numeros {
+  display: grid;
+  gap: 40px;
+  align-content: start;
+}
+
+.quem__numero {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--areia);
+}
+
+.quem__valor {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 5rem;         /* 160px */
+  line-height: 1;
+  color: var(--vermelho);
+}
+
+.quem__rotulo {
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---------- 4. TRAJETÓRIA ---------- */
+.trajetoria {
+  margin-top: 120px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 24px;
+}
+
+.trajetoria::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15px;
+  height: 1px;
+  background: var(--areia);
+}
+
+.trajetoria__item {
+  position: relative;
+  padding-top: 56px;
+}
+
+.trajetoria__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vermelho);
+}
+
+.trajetoria__ano {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 2rem;         /* 64px */
+  color: var(--areia);
+}
+
+.trajetoria__texto {
+  margin-top: 16px;
+  font-size: 0.625rem;     /* 20px */
+  line-height: 1.4;
+}
+
+/* ---------- 5. HABILIDADES ---------- */
+.habilidades {
+  margin-top: 96px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 56px;
+}
+
+.habilidades__grupo {
+  padding-top: 32px;
+  border-top: 1px solid var(--tinta);
+}
+
+.habilidades__titulo {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 2rem;         /* 64px */
+  line-height: 1.05;
+  margin-bottom: 32px;
+}
+
+.habilidades__grupo li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--areia);
+  font-size: 0.5rem;       /* 16px */
+}
+
+/* ---------- 6. ABERTURA DOS CASES ---------- */
+.abertura {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.abertura .titulo {
+  font-size: 9rem;         /* 288px */
+  line-height: 0.9;
+}
+
+.abertura__texto {
+  margin-top: 56px;
+  font-size: 0.875rem;     /* 28px */
+  max-width: 900px;
+  line-height: 1.45;
+  color: var(--areia);
+}
+
+/* ---------- 7–13. CASES ---------- */
+.case {
+  flex-direction: row;
+  gap: 96px;
+  padding-top: 80px;
+  padding-bottom: 72px;
+}
+
+.case__texto {
+  flex: 0 0 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+.case__cabecalho .numero-grande {
+  font-size: 1.75rem;      /* 56px */
+}
+
+.case__cabecalho {
+  display: grid;
+  gap: 6px;
+}
+
+.case__titulo {
+  font-size: 2rem;         /* 64px */
+  line-height: 1.02;
+}
+
+.case__disciplina {
+  margin-top: 4px;
+  font-size: 0.4375rem;    /* 14px */
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.case__blocos {
+  margin-top: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.case__rotulo {
+  font-size: 0.375rem;     /* 12px */
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--vermelho);
+  margin-bottom: 4px;
+}
+
+.pagina--vinho .case__rotulo {
+  color: var(--areia);
+}
+
+.case__bloco p,
+.case__bloco li {
+  font-size: 0.625rem;     /* 20px */
+  line-height: 1.4;
+}
+
+.case__bloco ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 28px;
+  list-style: disc;
+}
+
+.case__bloco li::marker {
+  color: var(--vermelho);
+}
+
+.pagina--vinho .case__bloco li::marker {
+  color: var(--areia);
+}
+
+.case__imagens {
+  flex: 1;
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.case__imagens--1 { grid-template-columns: 1fr; }
+.case__imagens--2 { grid-template-columns: 1fr 1fr; }
+.case__imagens--3 { grid-template-columns: 1fr 1fr 1fr; }
+.case__imagens--4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+.case__celula {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--areia);
+  background: var(--vinho);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagina--vinho .case__celula {
+  background: var(--tinta);
+}
+
+.case__celula img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* vídeo no PDF: poster + botão de play desenhado em CSS */
+.case__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--vermelho);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case__play::after {
+  content: "";
+  margin-left: 14px;
+  width: 0;
+  height: 0;
+  border-left: 36px solid var(--bege);
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+}
+
+.case__legenda {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 24px;
+  background: var(--vinho);
+  color: var(--bege);
+  font-size: 0.375rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.case__legenda a {
+  color: var(--areia);
+}
+
+/* ---------- 14. COMO EU TRABALHO ---------- */
+.processo {
+  margin-top: 110px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--areia);
+}
+
+.processo__etapa {
+  padding: 48px 40px 0 0;
+  display: grid;
+  gap: 24px;
+}
+
+.processo__numero {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 2.5rem;
+  color: var(--vermelho);
+}
+
+.processo__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  line-height: 1.05;
+}
+
+.processo__texto {
+  font-size: 0.625rem;
+  line-height: 1.5;
+}
+
+/* ---------- 15. CONTATO ---------- */
+.contato {
+  justify-content: flex-start;
+  padding-top: 96px;
+}
+
+.contato__obrigada {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 6rem;         /* 224px */
+  line-height: 0.95;
+  color: var(--bege);
+}
+
+.contato__lista {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1.7fr;
+  gap: 48px;
+}
+
+.contato__lista .legenda {
+  color: var(--areia);
+  margin-bottom: 12px;
+}
+
+.contato__lista a,
+.contato__lista span {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;       /* 48px */
+  color: var(--bege);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}

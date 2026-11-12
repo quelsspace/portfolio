@@ -1,0 +1,51 @@
+/* ==========================================================================
+   tokens.css — sistema visual compartilhado
+   Site e PDF importam ESTE arquivo. Mudou aqui, muda nas duas peças.
+   Nenhuma cor, fonte ou medida deve ser escrita direto nas peças.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* ---------- paleta: vinho, bege e vermelho ---------- */
+  --bege:     #F2E7D8;  /* fundo principal */
+  --vinho:    #3D0D1C;  /* fundo de seções e páginas escuras */
+  --tinta:    #2B0912;  /* texto sobre bege */
+  --vermelho: #C8372B;  /* destaque: links, números, hover, botões */
+  --areia:    #C9B49A;  /* bordas, legendas, detalhes */
+
+  /* texto sobre fundo vinho */
+  --texto-claro: var(--bege);
+
+  /* ---------- famílias tipográficas ---------- */
+  --fonte-titulo: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --fonte-texto:  "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* ---------- escala de tamanhos de fonte ---------- */
+  --fs-legenda: 0.75rem;   /* 12px — etiquetas em maiúsculo */
+  --fs-corpo:   1rem;      /* 16px — texto corrido */
+  --fs-lead:    1.25rem;   /* 20px — frase de apoio */
+  --fs-h3:      1.5rem;    /* 24px */
+  --fs-h2:      2.5rem;    /* 40px — títulos de seção */
+  --fs-h1:      clamp(3rem, 9vw, 7.5rem);   /* nome/capa, cresce com a tela */
+  --fs-marca-dagua: clamp(4rem, 19vw, 17rem); /* nome gigante ao fundo */
+
+  /* ---------- espaçamento (base 4px) ---------- */
+  --sp-1: 0.25rem;  /* 4px */
+  --sp-2: 0.5rem;   /* 8px */
+  --sp-3: 0.75rem;  /* 12px */
+  --sp-4: 1rem;     /* 16px — margem lateral mínima do celular */
+  --sp-5: 1.5rem;   /* 24px */
+  --sp-6: 2rem;     /* 32px */
+  --sp-7: 3rem;     /* 48px */
+  --sp-8: 4rem;     /* 64px */
+  --sp-9: 6rem;     /* 96px — respiro entre seções */
+
+  /* ---------- bordas e cantos ---------- */
+  --borda-fina: 1px;      /* borda padrão dos cards e imagens */
+  --raio:       2px;      /* cantos quase retos, estilo editorial */
+  --raio-pilula: 999px;   /* só para etiquetas e botões pequenos */
+
+  /* ---------- larguras ---------- */
+  --largura-max: 1200px;
+}
