@@ -300,8 +300,8 @@ clicável.
 ## 10. FASE 4 — PUBLICAÇÃO (GitHub Pages)
 
 Usuária do GitHub: **quelsspace** (https://github.com/quelsspace)
-Repositório: `portfolio-raquel`
-URL final esperada: **https://quelsspace.github.io/portfolio-raquel/**
+Repositório: `portfolio` (criado com este nome pela usuária; o planejado era portfolio-raquel)
+URL final esperada: **https://quelsspace.github.io/portfolio/**
 
 Execute você os comandos de git. Peça autenticação à usuária quando o `gh` ou o
 `git push` exigirem.
